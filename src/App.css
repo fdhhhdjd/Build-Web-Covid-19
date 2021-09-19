@@ -1,7 +1,12 @@
 .App {
   text-align: center;
 }
-
+.ant-card-head-title{
+  font-size:25px;
+}
+.count{
+  font-size:20px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
