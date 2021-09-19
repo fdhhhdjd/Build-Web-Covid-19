@@ -20,15 +20,22 @@ const Main = () => {
   const loadData = async () => {
     setLoading(true);
     const resp = await axios.get("https://data.covid19india.org/data.json");
+    //!navbar
     setTotalIndiaCase(resp.data.statewise.slice(0, 1));
-    //
+    //!home
     const totalStateCount = resp.data.statewise.slice(1);
     setTotalStateWiseCount(totalStateCount);
     setTotalStateArrayLength(totalStateCount.length);
     setLoading(false);
-    console.log("asdasd", totalStateCount);
   };
 
+  //!Search
+  const stateSearch = (searchText) => {
+    fileTered = totalStateWiseCount.filter((value) => {
+      return value.state.toLowerCase().includes(searchText.toLowerCase());
+    });
+    setTotalStateWiseCount(fileTered);
+  };
   useEffect(() => {
     loadData();
   }, []);
@@ -59,6 +66,9 @@ const Main = () => {
           totalStateArrayLength={totalStateArrayLength}
           loading={loading}
           loadData={loadData}
+          //searchText
+          fileTered={fileTered}
+          stateSearch={stateSearch}
         />
       </div>
     </>
